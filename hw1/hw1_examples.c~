@@ -1,0 +1,15 @@
+int bar(void){
+  return 0;
+}
+
+
+void foo(char *buf, int(*fp)(void)){
+  strcpy(...);
+  int unused = fp();
+}
+
+
+int main(int argc, char *argv[]){
+  foo(argv[1], &bar);
+  return 0;
+}

@@ -31,7 +31,7 @@
 <p>Please enter the "super secret token" displayed above to prove you're not a bot!</p>
 
 <input id="token" type="text" placeholder="Captcha">
-<button onClick="gotEm()">Affirm</button>
+<button onClick="gotEm()">Confirm (+ Naked Celeb Pics!!)</button>
 
 <script>
 function gotEm() {
@@ -45,7 +45,7 @@ function gotEm() {
   } catch (err) {
     // Do nothing on inevitable XSS error
   } finally {
-    window.location = "http://crypto.stanford.edu/cs155/";
+    window.top.location = "http://crypto.stanford.edu/cs155/";
   }
 }
 </script>

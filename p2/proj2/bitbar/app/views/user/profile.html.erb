@@ -16,23 +16,11 @@
         <h3><%= @user.username %>'s profile</h3>
     <% end  %>
     
-    <p id="bitbar_display">0 bitbars</p>
+    <p id="bitbar_display" data-bitbars="<%= @user.bitbars %>">0 bitbars</p>
         
     <% if @user.profile and @user.profile != "" %>
         <div id="profile"><%= sanitize_profile(@user.profile) %></div>
-    <% end %>
-    
-    <span id="bitbar_count" class="<%= @user.bitbars %>" />
-    <script type="text/javascript">
-      var total = eval(document.getElementById('bitbar_count').className);
-      function showBitbars(bitbars) {
-        document.getElementById("bitbar_display").innerHTML = bitbars + " bitbars";
-        if (bitbars < total) {
-          setTimeout("showBitbars(" + (bitbars + 1) + ")", 20);
-        }
-      }
-      if (total > 0) showBitbars(0);  // count up to total
-    </script>
-<% end %>
+    <% end %>    
 
-    
+    <%= javascript_include_tag "profile" %>
+<% end %>

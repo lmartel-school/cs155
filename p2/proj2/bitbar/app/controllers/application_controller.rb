@@ -2,6 +2,12 @@ class ApplicationController < ActionController::Base
   before_filter :load_logged_in_user
   before_filter :disable_protections
   before_filter :check_security_settings
+
+  before_filter :set_csp
+
+  def set_csp
+    response.headers['Content-Security-Policy'] = "script-src 'self'; object-src 'self'"
+  end
   
   # Since this is before_filter in the ApplicationController, this will run for every controller. If the user is logged in, their record will be in the @logged_in_user variable. Otherwise, that variable will be null.
   def load_logged_in_user

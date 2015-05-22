@@ -9,6 +9,7 @@ class UserController < ApplicationController
     
     @user = params[:user]
     @amount = params[:quantity]
+    session[:b_csrf] = @b_csrf = SecureRandom.hex 32
     render :transfer_form
   end
   
@@ -28,6 +29,10 @@ class UserController < ApplicationController
       @error = "The recipient does not exist."
     elsif @source_user.bitbars < @quantity
       @error = "You do not have enough bitbars!"
+    end
+
+    if !params[:b_csrf] || params[:b_csrf] != session[:b_csrf]
+      @error = "CSRF token malformed."
     end
     
     if @error != ""
@@ -118,7 +123,7 @@ class UserController < ApplicationController
     end
 
     @username = @logged_in_user.username
-    User.destroy_all("username = '#{@username}'")
+    User.destroy_all(username: @username)
 
     render "user/delete_user_success"
   end

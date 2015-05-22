@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,12 @@
   
   <meta charset="UTF-8">
   <%= stylesheet_link_tag    "application", media: "all" %>
+
+  <!-- Perfect (well, better) framebusting -->
+  <style type="text/css">html { visibility: hidden }</style>
+  <%= javascript_include_tag "application" %>
+
+  
   <% if not @disable_framebusting %>
       <script>
       // Imperfect framebusting

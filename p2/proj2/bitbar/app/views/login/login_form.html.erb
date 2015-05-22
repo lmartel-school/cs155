@@ -7,7 +7,7 @@
     <%= display_error(@error) %>
 
     <label for=username>Username</label>
-    <input type=text name=username value=<%= @username %> >
+    <input type=text name=username value="<%=h @username %>" >
 
     <label for=password>Password</label>
     <input type=password name=password />

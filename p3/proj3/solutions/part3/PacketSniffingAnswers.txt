@@ -1,0 +1,41 @@
+Part 3 -- Packet sniffing
+
+
+### 1
+
+We ran `grep "10.30.22.101" trace.txt | grep .80: | awk '{ print $3 }' | sort | uniq`, the goal of this being to find lines beginning with "10.30.22.101.[something] > [something else].80:".
+
+We got a few irrelevant results because of the imperfect grep target, but we also got a list of IP addresses. Here are the first 5 that seem promising:
+
+17.178.96.59.80
+171.67.215.200.80
+184.25.56.67.80
+208.85.40.50.80
+216.58.216.170.80
+
+(where on each line the first four numbers are the IP addresses, and the fifth is the port)
+
+
+### 2
+
+We processed the trace in ruby (see `portscan.rb`), counting up the number of packets sent (1) to each port and (2) overall for each (origin IP, host IP) pair. We then sorted this list. The (origin, host) pair with the highest total packet count sent them all to one port (port 80), so it was clearly not a port scan.
+
+However, the pair with the second-highest total count each sent many packets to each other, each one to a different port! Upon inspection, one (the scan origin) sent a bunch of SYN packets, and the other (the scan host) sent a bunch of RST packets back.
+
+(a) The origin IP was 10.30.1.65
+(b) The host IP was 10.30.5.234
+(c) The range of ports on the host scanned was 1 through 65389. 1003 packets were sent to (unique) ports in this range.
+
+
+### 3
+
+The `portscan.rb` script also revealed that another (origin, host) pair had logged 26076 packets, all to port 80. Manual inspection via grep revealed that these were indeed SYN packets.
+
+(a) The origin IP was 10.30.12.152
+(b) The host IP was 10.30.17.255
+(c) The number of syn packets sent was 26076
+
+
+### 4
+
+Skipped! (See Piazza announcement)
